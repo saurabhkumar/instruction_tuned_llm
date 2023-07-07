@@ -35,7 +35,7 @@ These instructions are not meant to enable you to copy and paste commands to a t
 
 (I could not resist putting some comments here. So just for fun: When the LLM could itself decide to read these instructions, understand them, generate datasets and execute the code, it might be able to create offsprings to suit its goals :smiling_imp: ).
 
-* Set up the environment (python dependencies) for working with falcon. Remember it uses some special features like flash attention requiring a specific version of PyTorch. Follow the instructions [here](https://huggingface.co/tiiuae/falcon-7b). You would need additional packages for PEFT and Quantization.
+* Set up the environment (python dependencies) for working with falcon. Remember to setup the required PyTorch version. Follow the instructions [here](https://huggingface.co/tiiuae/falcon-7b). You would need additional packages for Hugginface Transformers, Datasets, PEFT and Quantization.
 
 * Clone the *Alpaca-Lora* repository
 
