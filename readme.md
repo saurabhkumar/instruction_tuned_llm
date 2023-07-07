@@ -49,6 +49,6 @@ After cloning the repository, you need the following adaptations to the code to 
 
 Important: If you are using a remote login using ssh at the university (for accessing a workstation or server), try to use *nohup* and an *&* at the end of the finetuning command to ensure that it keeps running when your ssh session is terminated. You can use the `tail -f nohup.out` in the same path where you started your finetuning script to see the progress (it might take days or hours based on the GPU and the number of epochs).
 
-After finetuning is completed, modify the *generate.py* as required for use with falcon - set the correct base model and load the peft weights from the folder where you saved the finetuning weights, and use *AutoModelForCausalLM* and *AutoTokenizer* . (Hint: You might not necessarily need the setup with *gradio* as provided in alpaca-lora code. Just use the part of code needed for text generation - base model loading, PEFT parameter loading, GenerationConfig, and prompter modified for use with falcon. 
+After finetuning is completed, **modify the *generate.py* as required for use with falcon** - set the correct base model and load the peft weights from the folder where you saved the finetuning weights, and use *AutoModelForCausalLM* and *AutoTokenizer* . (Hint: You might not necessarily need the setup with *gradio* as provided in alpaca-lora code. Just use the part of code needed for text generation - base model loading, PEFT parameter loading, GenerationConfig, and prompter modified for use with falcon. 
 
 ## Have fun and keep learning.
