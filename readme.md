@@ -45,8 +45,10 @@ After cloning the repository, you need the following adaptations to the code to 
 * There is a bug in the *Alpaca-Lora* code that prevents saving of the adapter weights. Read the comments for the [issue](https://github.com/tloen/alpaca-lora/issues/446) already logged and fix it (code commenting).
 * In *utils/prompter.py*, modify *get_response* function to use "<|endoftext|>" token to find the end of the generated text and use the text only upto the first occurence of the token.
 
-Perform finetuning as described in the instructions in the *Alpaca-Lora* repository.
+**Perform finetuning** as described in the instructions in the *Alpaca-Lora* repository (**remember to use the right values for the arguments** - base model, rank, output path etc..).
 
 Important: If you are using a remote login using ssh at the university (for accessing a workstation or server), try to use *nohup* and an *&* at the end of the finetuning command to ensure that it keeps running when your ssh session is terminated. You can use the `tail -f nohup.out` in the same path where you started your finetuning script to see the progress (it might take days or hours based on the GPU and the number of epochs).
+
+After finetuning is completed, modify the *generate.py* as required for use with falcon - set the correct base model and load the peft weights from the folder where you saved the finetuning weights, and use *AutoModelForCausalLM* and *AutoTokenizer* . (Hint: You might not necessarily need the setup with *gradio* as provided in alpaca-lora code. Just use the part of code needed for text generation - base model loading, PEFT parameter loading, GenerationConfig, and prompter modified for use with falcon. 
 
 ## Have fun and keep learning.
