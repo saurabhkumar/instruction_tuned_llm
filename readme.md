@@ -42,6 +42,15 @@ These instructions are not meant to enable you to copy and paste commands to a t
 After cloning the repository, you need the following adaptations to the code to make it work with falcon:
 * In the *train* function in *finetune.py* specify *base_model* as *"tiiuae/falcon-7b"*, *data_path* as *"c-s-ale/dolly-15k-instruction-alpaca-format"* and the list for *lora_target_modules* as ["query","value"]. Specify *output_dir* to something like *"./falcon-loara"*
 * Replace the use of *LlamaForCausalLM* with *AutoModelForCausalLM* and *LlamaTokenizer* with *AutoTokenizer*.
+* Something to further explore: The *Alpaca-Lora* code tries to use the unknown_token as padding token. Falcon tokenizer does not have this token. Hence, adding a padding token can be used. You need to adapt the code accordingly as:
+  
+  After loding the Tokenizer: `tokenizer.add_special_tokens({'pad_token': '<PAD>'})`
+  
+  After loading the model: `model.resize_token_embeddings(len(tokenizer))`
+
+  Additionally, the original alpaca code used padding to the right. The alpaca lora code uses a padding to the left (with the argument that it allows batched inference). Look into the effects of these.
+
+  
 * There is a bug in the *Alpaca-Lora* code that prevents saving of the adapter weights. Read the comments for the [issue](https://github.com/tloen/alpaca-lora/issues/446) already logged and fix it (code commenting).
 * In *utils/prompter.py*, modify *get_response* function to use "<|endoftext|>" token to find the end of the generated text and use the text only upto the first occurence of the token.
 
